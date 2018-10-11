@@ -1,0 +1,45 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle hivent-groups-api@1.0.0~prestart: hivent-groups-api@1.0.0
+6 verbose lifecycle hivent-groups-api@1.0.0~prestart: unsafe-perm in lifecycle true
+7 verbose lifecycle hivent-groups-api@1.0.0~prestart: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\apiriou\Documents\dev\Microservices\nodejs-server-server\node_modules\.bin;C:\Users\apiriou\bin;D:\Tools\Git\mingw64\bin;D:\Tools\Git\usr\local\bin;D:\Tools\Git\usr\bin;D:\Tools\Git\usr\bin;D:\Tools\Git\mingw64\bin;D:\Tools\Git\usr\bin;C:\Users\apiriou\bin;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS;C:\oracle\OraClient\x86\Ora12.2c\bin;C:\oracle\OraClient\x86\Ora12.2c;C:\oracle\OraClient\x64\Ora12.2c\bin;C:\oracle\OraClient\x64\Ora12.2c;C:\oracle\OraClient\x64\Ora12.2c\bin;C:\oracle\OraClient\x64\Ora12.2c;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;D:\IDE\jdk\jdk1.8.0_112\bin;C:\Program Files\nodejs;D:\Tools\Git\cmd;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files (x86)\Intel\UCRT;C:\Program Files\Intel\UCRT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Microsoft VS Code\bin;D:\IDE\jdk\jdk1.8.0_112;D:\IDE\maven\bin;D:\IDE\svn\bin;C:\Users\apiriou\AppData\Roaming\npm;C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin;C:\Program Files\Microsoft VS Code\bin;D:\Tools\Git\usr\bin\vendor_perl;D:\Tools\Git\usr\bin\core_perl
+8 verbose lifecycle hivent-groups-api@1.0.0~prestart: CWD: C:\Users\apiriou\Documents\dev\Microservices\nodejs-server-server
+9 silly lifecycle hivent-groups-api@1.0.0~prestart: Args: [ '/d /s /c', 'npm install' ]
+10 silly lifecycle hivent-groups-api@1.0.0~prestart: Returned: code: 1  signal: null
+11 info lifecycle hivent-groups-api@1.0.0~prestart: Failed to exec prestart script
+12 verbose stack Error: hivent-groups-api@1.0.0 prestart: `npm install`
+12 verbose stack Exit status 1
+12 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+12 verbose stack     at emitTwo (events.js:106:13)
+12 verbose stack     at EventEmitter.emit (events.js:191:7)
+12 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+12 verbose stack     at emitTwo (events.js:106:13)
+12 verbose stack     at ChildProcess.emit (events.js:191:7)
+12 verbose stack     at maybeClose (internal/child_process.js:891:16)
+12 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+13 verbose pkgid hivent-groups-api@1.0.0
+14 verbose cwd C:\Users\apiriou\Documents\dev\Microservices\nodejs-server-server
+15 error Windows_NT 6.3.9600
+16 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+17 error node v6.11.0
+18 error npm  v3.10.10
+19 error code ELIFECYCLE
+20 error hivent-groups-api@1.0.0 prestart: `npm install`
+20 error Exit status 1
+21 error Failed at the hivent-groups-api@1.0.0 prestart script 'npm install'.
+21 error Make sure you have the latest version of node.js and npm installed.
+21 error If you do, this is most likely a problem with the hivent-groups-api package,
+21 error not with npm itself.
+21 error Tell the author that this fails on your system:
+21 error     npm install
+21 error You can get information on how to open an issue for this project with:
+21 error     npm bugs hivent-groups-api
+21 error Or if that isn't available, you can get their info via:
+21 error     npm owner ls hivent-groups-api
+21 error There is likely additional logging output above.
+22 verbose exit [ 1, true ]
