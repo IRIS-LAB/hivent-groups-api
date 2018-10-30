@@ -1,13 +1,13 @@
-const GroupsDAO = require('../data/GroupsDAO')
+const groupsDAO = require('../data/GroupsDAO')
 
-exports.findGroups = async function() {
-    return await GroupsDAO.findGroups()
+exports.findGroups = async () => {
+  return await groupsDAO.findGroups()
 }
 
-exports.getGroup = async function(groupId) {
-    return await GroupsDAO.getGroup(groupId)
+exports.getGroup = async groupId => {
+  return await groupsDAO.getGroup(groupId)
 }
 
-exports.createGroup = async function(group) {
-    return await GroupsDAO.createGroup(group)
+exports.createGroup = async group => {
+  return await groupsDAO.createGroup(group)
 }

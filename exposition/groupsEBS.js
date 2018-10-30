@@ -1,18 +1,35 @@
 const express = require('express')
-const GroupsLBS = require('../business/GroupsLBS')
-const groupsRouter = express.Router()
+const groupsLBS = require('../business/GroupsLBS')
 
-groupsRouter.get('/', async (req,res) => {
-    res.json(await GroupsLBS.findGroups())
-})
+exports.getRouter = () => {
+  let groupsRouter = express.Router()
 
-groupsRouter.get('/:groupId', async (req,res) => {
-    res.json(await GroupsLBS.getGroup(req.params.groupId))
-})
+  groupsRouter.get('/', async (req, res) => {
+    try {
+      res.send(await groupsLBS.findGroups())
+    } catch (error) {
+      console.log('An error occured', error)
+      res.status(500).send('An error occured')
+    }
+  })
 
-groupsRouter.post('/', async (req,res) => {
-    await GroupsLBS.createGroup(req.body)
-    res.json()
-})
+  groupsRouter.get('/:groupId', async (req, res) => {
+    try {
+      res.send(await groupsLBS.getGroup(req.params.groupId))
+    } catch (error) {
+      console.log('An error occured', error)
+      res.status(500).send('An error occured')
+    }
+  })
 
-module.exports = groupsRouter
+  groupsRouter.post('/', async (req, res) => {
+    try {
+      res.send(await groupsLBS.createGroup(req.body))
+    } catch (error) {
+      console.log('An error occured', error)
+      res.status(500).send('An error occured')
+    }
+  })
+
+  return groupsRouter
+}

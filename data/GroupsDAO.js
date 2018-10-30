@@ -1,27 +1,37 @@
 const MongoClient = require('mongodb').MongoClient
 const ObjectId = require('mongodb').ObjectId
-const url = "mongodb://localhost:27018/"
+const url = 'mongodb://localhost:27018/'
 
-exports.findGroups = async function() {
-    let db = await MongoClient.connect(url)
-    let dbo = db.db("Groups")
-    let items = await dbo.collection('Groups').find().toArray()
-    db.close()
-    return items
+connect = async () => {
+  let connection = await MongoClient.connect(
+    url,
+    { useNewUrlParser: true }
+  )
+  let db = connection.db('Groups')
+  return { connection, db }
 }
 
-exports.getGroup = async function(groupId) {
-    let db = await MongoClient.connect(url)
-    let dbo = db.db("Groups")
-    let o_id = new ObjectId(groupId)
-    let result = await dbo.collection('Groups').findOne({"_id" : o_id})
-    db.close()
-    return result
+exports.findGroups = async () => {
+  let groupsDB = await connect()
+  let groups = await groupsDB.db
+    .collection('Groups')
+    .find()
+    .toArray()
+  groupsDB.connection.close()
+  return groups
 }
 
-exports.createGroup = async function(group) {
-    let db = await MongoClient.connect(url)
-    let dbo = db.db("Groups")
-    await dbo.collection('Groups').insertOne(group)
-    db.close()
+exports.getGroup = async groupId => {
+  let groupsDB = await connect()
+  let oid = new ObjectId(groupId)
+  let group = await groupsDB.db.collection('Groups').findOne({ _id: oid })
+  groupsDB.connection.close()
+  return group
+}
+
+exports.createGroup = async group => {
+  let groupsDB = await connect()
+  let newGroup = await groupsDB.db.collection('Groups').insertOne(group)
+  groupsDB.connection.close()
+  return newGroup.ops[0]
 }
