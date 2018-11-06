@@ -1,7 +1,7 @@
-const express = require('express')
-const groupsLBS = require('../business/GroupsLBS')
+import express from 'express'
+import * as groupsLBS from '../business/GroupsLBS'
 
-exports.getRouter = () => {
+export const  getRouter = () => {
   let groupsRouter = express.Router()
 
   groupsRouter.get('/', async (req, res) => {
@@ -33,3 +33,4 @@ exports.getRouter = () => {
 
   return groupsRouter
 }
+
