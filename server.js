@@ -15,4 +15,5 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/groups', groupsEBS.getRouter())
-app.use('/actuator', actuatorEBS.getRouter())
+app.use('/actuator', actuatorEBS.getRouter()) 
+ 

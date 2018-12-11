@@ -52,4 +52,4 @@ let logger = createLogger({
 
 export const setLogger = () => {
 	return logger
-}
+} 
