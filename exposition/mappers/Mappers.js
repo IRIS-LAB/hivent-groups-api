@@ -1,4 +1,5 @@
 
+import { GroupBE } from '../../objects/business/be/GroupBE'
 
 exports.jsonToGroupBE = json => {
     
