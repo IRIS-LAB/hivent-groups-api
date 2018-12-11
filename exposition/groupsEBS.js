@@ -18,7 +18,7 @@ export const  getRouter = () => {
       res.status(500).send('An error occured')
     }
   })
-
+ 
   groupsRouter.get('/:groupId', async (req, res) => {
     try {
       res.send(await groupsLBS.getGroup(req.params.groupId))

@@ -5,7 +5,8 @@ import { GroupTypeEnum } from "./GroupTypeEnum";
 
 export class GroupBE {
 
-	constructor(name, description, proposedDate, openedDate, closedDate, capacity, pathimage, status, type, selectionMode) {
+	constructor(id, name, description, proposedDate, openedDate, closedDate, capacity, pathimage, status, type, selectionMode) {
+        this._id = id
 		this._name = name
         this._description = description
         
@@ -33,29 +34,32 @@ export class GroupBE {
             this._type = type
         }
 	}
+    get id() {
+        return this._id;
+    }
 
-	name() {
+	get name() {
 		return this._name
 	}
 
-	description() {
+	get description() {
 		return this._description
 	}
 
-	proposedDate() {	
+	get proposedDate() {	
 		return this._proposedDate
     }
-    openedDate() {
+    get openedDate() {
 		return this._openedDate
 	}
-	closedDate() {
+	get closedDate() {
 		return this._closedDate
 	}
-	pathimage() {
+	get pathimage() {
 		return this._pathimage
 	}
 
-    isValid() {
+    get isValid() {
         return (this._name != null)
                 && (this._description != null)
                 && (this._status != null)
