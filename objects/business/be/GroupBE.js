@@ -34,28 +34,28 @@ export class GroupBE {
         }
 	}
 
-	get name() {
+	name() {
 		return this._name
 	}
 
-	get description() {
+	description() {
 		return this._description
 	}
 
-	get proposedDate() {	
+	proposedDate() {	
 		return this._proposedDate
     }
-    get openedDate() {
+    openedDate() {
 		return this._openedDate
 	}
-	get closedDate() {
+	closedDate() {
 		return this._closedDate
 	}
-	get pathimage() {
+	pathimage() {
 		return this._pathimage
 	}
 
-    get isValide() {
+    isValid() {
         return (this._name != null)
                 && (this._description != null)
                 && (this._status != null)
