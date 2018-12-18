@@ -12,7 +12,7 @@ export const  getRouter = () => {
 
   groupsRouter.get('/', async (req, res) => {
     try {
-      res.send(await groupsLBS.findGroups())
+      res.send(await groupsLBS.findGroups(req.query.name, req.query.status, req.query.type))
     } catch (error) {
       console.log('An error occured', error)
       res.status(500).send('An error occured')
@@ -40,7 +40,18 @@ export const  getRouter = () => {
       res.status(500).send('An error occured')
     }
   })
-
+  groupsRouter.put('/', async (req, res) => {
+    try {
+      //res.send(await groupsLBS.createGroup(req.body))
+      let groupBE = mappers.jsonToGroupBE(req.body)
+       logger.debug(groupBE)
+			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
+      res.send(await groupsLBS.updateGroup(groupBE))   
+    } catch (error) {
+      console.log('An error occured', error)
+      res.status(500).send('An error occured')
+    }
+  })
   return groupsRouter
 }
 
