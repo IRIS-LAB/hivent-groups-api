@@ -5,33 +5,33 @@ import { GroupTypeEnum } from "./GroupTypeEnum";
 
 export class GroupBE {
 
-	constructor(id, name, description, proposedDate, openedDate, closedDate, capacity, pathimage, status, type, selectionMode) {
-        this._id = id
-		this._name = name
-        this._description = description
+	constructor(group) {
+        this._id = group.id
+		this._name = group.name
+        this._description = group.description
         
         try {
-        if (proposedDate == null) {
-            this._proposedDate = (new Date()).toLocaleString()
-        } else {
-            this._proposedDate = (new Date(proposedDate)).toLocaleString()
-        }
+            if (group.proposedDate == null) {
+                this._proposedDate = (new Date()).toLocaleString()
+            } else {
+                this._proposedDate = (new Date(group.proposedDate)).toLocaleString()
+            }  
         } catch (error) {
 
         }
 
-        this._openedDate = openedDate
-        this._closedDate = closedDate
-        this._capacity = capacity
-        this._pathimage = pathimage
-       if (status in GroupStatutEnum) {
-            this._status = status
+        this._openedDate = group.openedDate
+        this._closedDate = group.closedDate
+        this._capacity = group.capacity
+        this._pathimage = group.pathimage
+       if (group.status in GroupStatutEnum) {
+            this._status = group.status
         }
-        if (selectionMode in GroupSelectionModeEnum) {
-            this._selectionmode = selectionMode    
+        if (group.selectionMode in GroupSelectionModeEnum) {
+            this._selectionmode = group.selectionMode    
         }
-        if (type in GroupTypeEnum) {
-            this._type = type
+        if (group.type in GroupTypeEnum) {
+            this._type = group.type
         }
 	}
     get id() {

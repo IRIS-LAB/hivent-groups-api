@@ -10,7 +10,7 @@ export const getGroup = async groupId => {
 
 export const createGroup = async group => {
   if (!group.isValid) {
-    throw new Error("Valeur obligatoire non renseigné")
+    throw new Error("Valeur obligatoire non renseigné" + group.name + " " + group.description + " " + group.status + " " + group.selectionmode + " " + group.type + " " + group.proposedDate )
   }
   return await groupsDAO.createGroup(group)
 }
