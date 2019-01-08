@@ -38,10 +38,4 @@ export class GroupBE {
         }
     }
 
-
-    get isValid() {
-        return true
-            
-    }
-
 }

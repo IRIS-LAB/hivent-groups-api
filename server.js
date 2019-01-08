@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import * as groupsEBS from './exposition/GroupsEBS'
-import * as actuatorEBS from './exposition/ActuatorEBS'
+import * as groupsEBS from './src/exposition/GroupsEBS'
+import * as actuatorEBS from './src/exposition/ActuatorEBS'
 
 const app = express()
 const port = process.env.PORT || 8080
