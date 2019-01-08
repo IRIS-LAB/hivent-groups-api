@@ -1,4 +1,4 @@
-import { GroupStatutEnum } from "./GroupStatusEnum";
+import { GroupStatusEnum } from "./GroupStatusEnum";
 import { GroupSelectionModeEnum } from "./GroupSelectionModeEnum";
 import { GroupTypeEnum } from "./GroupTypeEnum";
 
@@ -27,7 +27,7 @@ export class GroupBE {
         this.closedDate = group.closedDate
         this.capacity = group.capacity
         this.pathimage = group.pathimage
-       if (group.status in GroupStatutEnum) {
+       if (group.status in GroupStatusEnum) {
             this.status = group.status
         }
         if (group.selectionMode in GroupSelectionModeEnum) {
