@@ -2,6 +2,10 @@ import { BusinessException, ErrorDO } from 'iris-common';
 import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH, GROUP_FORMAT_DATE } from '../objects/business/be/GroupBE'
 import moment  from 'moment'
 
+import { GroupStatusEnum } from "../objects/business/be/GroupStatusEnum";
+import { GroupSelectionModeEnum } from "../objects/business/be/GroupSelectionModeEnum";
+import { GroupTypeEnum } from "../objects/business/be/GroupTypeEnum";
+
 const checkFormatDate = date => {
     return moment(date, GROUP_FORMAT_DATE, true).isValid()
 } 
@@ -13,7 +17,7 @@ export const checkGroupBE = groupBE => {
         ...checkNameGroupBE(groupBE),
         ...checkDescriptionGroupBE(groupBE),
         ...checkProposedDateGroupBE(groupBE),
-        ...checkSelectionNameGroupBE(groupBE),
+        ...checkSelectionModeGroupBE(groupBE),
         ...checkStatusGroupBE(groupBE),
         ...checkTypeGroupBE(groupBE),
         ...checkOpenedDateGroupBE(groupBE),
@@ -67,18 +71,22 @@ export const checkStatusGroupBE = groupBE => {
 
     if (!groupBE.status) {
         errors.push(new ErrorDO('status', 'group.status.unknown', 'Le statut est inconnu.'));
+    } else if (!(groupBE.status in GroupStatusEnum )) {
+        errors.push(new ErrorDO('status', 'group.status.invalid', 'Le statut est invalide.'));
     }
     return errors
 }
 
 
 // selectionmode
-export const checkSelectionNameGroupBE = groupBE => {
+export const checkSelectionModeGroupBE = groupBE => {
 
     let errors = []
 
     if (!groupBE.selectionmode) {
         errors.push(new ErrorDO('selectionmode', 'group.selectionmode.unknown', 'Le mode de sélection est inconnu.'));
+    } else if (!(groupBE.selectionmode in GroupSelectionModeEnum )) {
+        errors.push(new ErrorDO('selectionmode', 'group.selectionmode.invalid', 'Le mode de sélection est invalide.'));
     }
     return errors
 }
@@ -91,6 +99,8 @@ export const checkTypeGroupBE = groupBE => {
 
     if (!groupBE.type) {
         errors.push(new ErrorDO('type', 'group.type.unknown', 'Le type est inconnu.'));
+    } else if (!(groupBE.type in GroupTypeEnum )) {
+        errors.push(new ErrorDO('type', 'group.type.invalid', 'Le type est invalide.'));
     }
     return errors
 }
