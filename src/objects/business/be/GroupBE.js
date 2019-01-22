@@ -2,6 +2,10 @@ import { GroupStatusEnum } from "./GroupStatusEnum";
 import { GroupSelectionModeEnum } from "./GroupSelectionModeEnum";
 import { GroupTypeEnum } from "./GroupTypeEnum";
 
+export const MAX_NAME_LENGTH = 100;
+export const MAX_DESCRIPTION_LENGTH = 2000;
+
+export const GROUP_FORMAT_DATE = "YYYY-MM-DD"
 
 export class GroupBE {
 
@@ -13,15 +17,7 @@ export class GroupBE {
         this.members = group.members
         this.interested = group.interested
         
-        try {
-            if (group.proposedDate == null) {
-                this.proposedDate = (new Date()).toLocaleString()
-            } else {
-                this.proposedDate = (new Date(group.proposedDate)).toLocaleString()
-            }  
-        } catch (error) {
-
-        }
+        this.proposedDate = group.proposedDate
 
         this.openedDate = group.openedDate
         this.closedDate = group.closedDate

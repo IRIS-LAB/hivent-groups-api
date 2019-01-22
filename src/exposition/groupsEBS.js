@@ -4,7 +4,7 @@ import * as mappers from './mappers/Mappers'
 
 import * as winston from '../../config/winston' 
 import { debug } from 'util'
-import { BusinessException } from 'iris-elements';
+import { BusinessException } from 'iris-common';
 
 const logger = winston.setLogger()
 

@@ -3,7 +3,7 @@ import { GroupBE } from '../objects/business/be/GroupBE';
 import { GroupSelectionModeEnum } from '../objects/business/be/GroupSelectionModeEnum';
 import { GroupStatusEnum } from '../objects/business/be/GroupStatusEnum';
 import { GroupTypeEnum } from '../objects/business/be/GroupTypeEnum';
-import { BusinessException } from 'iris-elements';
+import { BusinessException } from 'iris-common';
 
 describe('checkGroupBE', () => {
 
