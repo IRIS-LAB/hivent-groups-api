@@ -4,7 +4,7 @@ import { GroupSelectionModeEnum } from '../objects/business/be/GroupSelectionMod
 import { GroupStatusEnum } from '../objects/business/be/GroupStatusEnum';
 import { GroupTypeEnum } from '../objects/business/be/GroupTypeEnum';
 import { BusinessException } from 'iris-common';
-import { checkGroupBE, checkNameGroupBE, checkDescriptionGroupBE, checkStatusGroupBE, checkSelectionModeGroupBE, checkTypeGroupBE } from './ValidatorLBS'
+import { checkGroupBE, checkNameGroupBE, checkDescriptionGroupBE, checkStatusGroupBE, checkSelectionModeGroupBE, checkTypeGroupBE, checkProposedDateGroupBE, checkOpenedDateGroupBE, checkClosedDateGroupBE } from './ValidatorLBS'
 
 import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH, GROUP_FORMAT_DATE } from '../objects/business/be/GroupBE'
 
@@ -119,4 +119,54 @@ describe('ValidatorLBS', () => {
                         expectOneError({"type":"incorrect"}, checkTypeGroupBE, 'group.type.invalid', 'type')
                 })
         })
+
+        describe('checkProposedDateGroupBE', () => {
+
+                it('Should not return errors when the proposed date is correct', () => {
+                        expectNoError({ "proposedDate": "2020-01-01" }, checkProposedDateGroupBE)
+                })
+
+                it('Should return an error when the proposed date is invalid', () => {
+                        expectOneError({ "proposedDate": "test" }, checkProposedDateGroupBE, 'group.proposedDate.invalid','proposedDate' )
+                })
+
+                it('Should return an error when the proposed date is unknown', () => {
+                        expectOneError({}, checkProposedDateGroupBE, 'group.proposedDate.unknown', 'proposedDate')
+                })
+                
+        })
+        
+        describe('checkOpenedDateGroupBE', () => {
+
+                it('Should not return errors when the opened date is correct', () => {
+                        expectNoError({ "openedDate": "2020-01-01" }, checkOpenedDateGroupBE)
+                })
+
+                it('Should return error when the opened date is invalid', () => {
+                        expectOneError({ "openedDate": "test" }, checkOpenedDateGroupBE, 'group.openedDate.invalid','openedDate' )
+                })
+
+                it('Should not return an error when the opened date is unknown', () => {
+                        expectNoError({}, checkOpenedDateGroupBE)
+                })
+                
+        })
+
+        describe('checkClosedDateGroupBE', () => {
+
+                it('Should not return errors when the closeed date is correct', () => {
+                        expectNoError({ "closedDate": "2020-01-01" }, checkClosedDateGroupBE)
+                })
+
+                it('Should return error when the closed date is invalid', () => {
+                        expectOneError({ "closedDate": "test" }, checkClosedDateGroupBE, 'group.closedDate.invalid','closedDate' )
+                })
+
+                it('Should not return an error when the closed date is unknown', () => {
+                        expectNoError({}, checkClosedDateGroupBE)
+                })
+                
+        })
+
+
 })
