@@ -1,59 +1,35 @@
-import { MongoClient, ObjectId } from "mongodb";
-
-const url = "mongodb://localhost:27018/";
-
-const connect = async () => {
-  let connection = await MongoClient.connect(
-    url,
-    { useNewUrlParser: true }
-  );
-  let db = connection.db("Groups");
-  return db;
-};
+import {db} from "./db"
 
 export const findGroups = async (name, status, type) => {
-  let groupsDB = await connect();
-
-  let findRequest = {};
-  if (name !== undefined) {
-    findRequest.name = { $regex: new RegExp(".*" + name + ".*", "i") };
-  }
-  if (status !== undefined) {
-    findRequest.status = status;
-  }
-  if (type !== undefined) {
-    findRequest.type = type;
-  }
-  /* if (userId !== undefined) {
-    findRequest.name = name
-  } */
-
-  let groups = await groupsDB
-    .collection("Groups")
-    .find(findRequest)
-    .toArray();
-  // groupsDB.connection.close()
-  return groups;
+ let groupsRef = db.collection("groups")
+ groupsRef = !name ? groupsRef : groupsRef.where("name","==",name)
+ groupsRef = !status ? groupsRef : groupsRef.where("status","==",status)
+ groupsRef = !type ? groupsRef : groupsRef.where("type","==",type)
+ 
+ let groups = await groupsRef.get()
+ let result = new Array()
+ groups.forEach(doc => {
+   result.push(doc.data())
+  })
+  return result
 };
 
 export const getGroup = async groupId => {
-  let groupsDB = await connect();
-  let oid = new ObjectId(groupId);
-  let group = await groupsDB.collection("Groups").findOne({ _id: oid });
-  return group;
+  let doc = db.collection("groups").doc(groupId)
+  let res = await doc.get()
+  return res.data()
 };
 
 export const createGroup = async group => {
-  let groupsDB = await connect();
-  let newGroup = await groupsDB.collection("Groups").insertOne(group);
-  //groupsDB.connection.close()
-  return newGroup.ops[0];
+  let doc = db.collection("groups").doc()
+  let groupToCreate = JSON.parse(JSON.stringify(group))
+  groupToCreate.id = doc.id
+  let res = await doc.set(groupToCreate)
+  return doc.id
 };
 
 export const updateGroup = async group => {
-  let groupsDB = await connect();
-  console.log(group)
-  let newGroup = await groupsDB.collection("Groups").updateOne(group);
-  //groupsDB.connection.close()
-  return newGroup.ops[0];
+  let doc = db.collection("groups").doc(group.id)
+  let groupToUpdate = JSON.parse(JSON.stringify(group))
+  await doc.set(groupToUpdate)
 };

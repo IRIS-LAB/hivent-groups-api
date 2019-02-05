@@ -21,12 +21,11 @@ export const createGroup = async group => {
 
   checkGroupBE(group);
 
-  return await groupsDAO.createGroup(group)
+  let id = await groupsDAO.createGroup(group)
+  return await getGroup(id)
 }
 
 export const updateGroup = async group => {
-  if (!group.isValid) {
-    throw new Error("Valeur obligatoire non renseigné" + group.name + " " + group.description + " " + group.status + " " + group.selectionmode + " " + group.type + " " + group.proposedDate )
-  }
-  return await groupsDAO.updateGroup(group)
+  checkGroupBE(group)
+  await groupsDAO.updateGroup(group)
 }

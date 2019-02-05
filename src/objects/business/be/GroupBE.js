@@ -10,7 +10,7 @@ export const GROUP_FORMAT_DATE = "YYYY-MM-DD"
 export class GroupBE {
 
 	constructor(group) {
-        this._id = group._id
+        this.id = group.id
 		this.name = group.name
         this.description = group.description
         this.administrators = group.administrators
