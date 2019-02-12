@@ -3,7 +3,7 @@ import { GroupBE } from '../objects/business/be/GroupBE';
 import { GroupSelectionModeEnum } from '../objects/business/be/GroupSelectionModeEnum';
 import { GroupStatusEnum } from '../objects/business/be/GroupStatusEnum';
 import { GroupTypeEnum } from '../objects/business/be/GroupTypeEnum';
-import { BusinessException } from 'iris-common';
+import { BusinessException } from '@ugieiris/iris-common';
 import { checkGroupBE, checkNameGroupBE, checkDescriptionGroupBE, checkStatusGroupBE, checkSelectionModeGroupBE, checkTypeGroupBE, checkProposedDateGroupBE, checkOpenedDateGroupBE, checkClosedDateGroupBE } from './ValidatorLBS'
 
 import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH, GROUP_FORMAT_DATE } from '../objects/business/be/GroupBE'

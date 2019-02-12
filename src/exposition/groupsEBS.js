@@ -4,9 +4,21 @@ import * as mappers from './mappers/Mappers'
 
 import * as winston from '../../config/winston' 
 import { debug } from 'util'
-import { BusinessException } from 'iris-common';
+import { TechnicalException, BusinessException, EntityNotFoundBusinessException, ErrorDO } from '@ugieiris/iris-common';
 
 const logger = winston.setLogger()
+
+const handleException = (error, res) => {  
+  if (error instanceof EntityNotFoundBusinessException) {
+    res.status(404).send(error)
+  } else if (error instanceof BusinessException) {
+    res.status(400).send(error)
+  } else if (error instanceof TechnicalException) {
+    res.status(500).send(error)
+  } else {
+    res.status(500).send(new ErrorDO('', '500', 'A technical error occured'))
+  }
+}
 
 export const  getRouter = () => {
   let groupsRouter = express.Router()
@@ -15,8 +27,7 @@ export const  getRouter = () => {
     try {
       res.send(await groupsLBS.findGroups(req.query.name, req.query.status, req.query.type))
     } catch (error) {
-      console.log('An error occured', error)
-      res.status(500).send('An error occured')
+      handleException(error, res)
     }
   })
  
@@ -24,8 +35,7 @@ export const  getRouter = () => {
     try {
       res.send(await groupsLBS.getGroup(req.params.groupId))
     } catch (error) {
-      console.log('An error occured', error)
-      res.status(500).send('An error occured')
+      handleException(error, res)
     }
   })
 
@@ -37,12 +47,7 @@ export const  getRouter = () => {
 			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
       res.send(await groupsLBS.createGroup(groupBE))   
     } catch (error) {
-      console.log('An error occured', error)
-      if(error instanceof BusinessException) {
-				res.status(400).send(error)
-			} else {
-      res.status(500).send('An error occured')
-      }
+      handleException(error, res)
     }
   })
   groupsRouter.put('/', async (req, res) => {
@@ -53,8 +58,7 @@ export const  getRouter = () => {
 			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
       res.send(await groupsLBS.updateGroup(groupBE))   
     } catch (error) {
-      console.log('An error occured', error)
-      res.status(500).send('An error occured')
+      handleException(error, res)
     }
   })
   return groupsRouter

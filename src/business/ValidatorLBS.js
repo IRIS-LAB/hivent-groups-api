@@ -1,4 +1,4 @@
-import { BusinessException, ErrorDO } from 'iris-common';
+import { BusinessException, ErrorDO } from '@ugieiris/iris-common';
 import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH, GROUP_FORMAT_DATE } from '../objects/business/be/GroupBE'
 import moment  from 'moment'
 

@@ -17,6 +17,7 @@ export const findGroups = async (name, status, type) => {
 export const getGroup = async groupId => {
   let doc = db.collection("groups").doc(groupId)
   let res = await doc.get()
+  // Return data
   return res.data()
 };
 
