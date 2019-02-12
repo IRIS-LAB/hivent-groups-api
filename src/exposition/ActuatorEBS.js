@@ -5,7 +5,7 @@ export const getRouter = () => {
 
   actuatorRouter.get('/health', async (req, res) => {
     try {
-      res.json({ "status" : "UP" })
+      res.json({ status: 'UP' })
     } catch (error) {
       console.log('An error occured', error)
       res.status(500).send('An error occured')
