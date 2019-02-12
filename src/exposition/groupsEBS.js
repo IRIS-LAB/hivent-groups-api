@@ -8,7 +8,8 @@ import { TechnicalException, BusinessException, EntityNotFoundBusinessException,
 
 const logger = winston.setLogger()
 
-const handleException = (error, res) => {  
+const handleException = (error, res) => { 
+  console.log(error)
   if (error instanceof EntityNotFoundBusinessException) {
     res.status(404).send(error)
   } else if (error instanceof BusinessException) {
@@ -41,7 +42,6 @@ export const  getRouter = () => {
 
   groupsRouter.post('/', async (req, res) => {
     try {
-      //res.send(await groupsLBS.createGroup(req.body))
       let groupBE = mappers.jsonToGroupBE(req.body)
        logger.debug(groupBE)
 			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
@@ -52,7 +52,6 @@ export const  getRouter = () => {
   })
   groupsRouter.put('/:groupId', async (req, res) => {
     try {
-      //res.send(await groupsLBS.createGroup(req.body))
       let groupBE = mappers.jsonToGroupBE(req.body)
        logger.debug(groupBE)
 			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
