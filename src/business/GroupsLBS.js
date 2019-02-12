@@ -36,7 +36,8 @@ export const createGroup = async group => {
   return await getGroup(id)
 }
 
-export const updateGroup = async group => {
+export const updateGroup = async (id, group) => {
+  group.id = id
   checkGroupBE(group)
   await groupsDAO.updateGroup(group)
 }

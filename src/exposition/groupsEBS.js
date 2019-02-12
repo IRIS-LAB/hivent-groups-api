@@ -50,13 +50,13 @@ export const  getRouter = () => {
       handleException(error, res)
     }
   })
-  groupsRouter.put('/', async (req, res) => {
+  groupsRouter.put('/:groupId', async (req, res) => {
     try {
       //res.send(await groupsLBS.createGroup(req.body))
       let groupBE = mappers.jsonToGroupBE(req.body)
        logger.debug(groupBE)
 			logger.info('POST Request received over /: ' + JSON.stringify(req.body))
-      res.send(await groupsLBS.updateGroup(groupBE))   
+      res.send(await groupsLBS.updateGroup(req.params.groupId, groupBE))   
     } catch (error) {
       handleException(error, res)
     }
