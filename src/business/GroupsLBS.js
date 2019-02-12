@@ -24,8 +24,6 @@ export const getGroup = async groupId => {
 }
 
 export const createGroup = async group => {
-  console.log('GroupsLBS : ' + group )
-
   if (group.proposedDate == null) {
         group.proposedDate = moment().format(GROUP_FORMAT_DATE)
   }  
